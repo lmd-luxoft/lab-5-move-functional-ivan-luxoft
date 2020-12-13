@@ -43,6 +43,10 @@
     <Compile Include="Customer.cs" />
     <Compile Include="Movie.cs" />
     <Compile Include="Rental.cs" />
+    <Compile Include="RentStrategy\RentNewRelease.cs" />
+    <Compile Include="RentStrategy\RentRegular.cs" />
+    <Compile Include="RentStrategy\RentStrategyBase.cs" />
+    <Compile Include="RentStrategy\RentChildren.cs" />
     <Compile Include="TestClass.cs" />
   </ItemGroup>
   <ItemGroup>
