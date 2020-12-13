@@ -1,31 +1,19 @@
-﻿// NUnit 3 tests
-// See documentation : https://github.com/nunit/docs/wiki/NUnit-Documentation
-using MovieRental.RentStrategy;
+﻿using MovieRental.RentStrategy;
 using System;
 
 namespace MovieRental
 {
     internal class Rental
     {
-        private Movie movie;
-        private int daysRental;
+        public Movie Movie { get; }
+        public int DaysRental { get; }
         RentStrategyBase rentStrategy;
 
         public Rental(Movie movie, int daysRental)
         {
-            this.movie = movie;
-            this.daysRental = daysRental;
-            this.SetRentStrategy(movie.getPriceCode());
-        }
-
-        internal Movie getMovie()
-        {
-            return movie;
-        }
-
-        internal int getDaysRented()
-        {
-            return daysRental;
+            Movie = movie;
+            DaysRental = daysRental;
+            SetRentStrategy(movie.PriceType);
         }
 
         private void SetRentStrategy(Movie.Type movieType)
@@ -33,24 +21,21 @@ namespace MovieRental
             switch (movieType)
             {
                 case Movie.Type.REGULAR:
-                    this.rentStrategy = new RentRegular();
+                    rentStrategy = new RentRegular();
                     break;
                 case Movie.Type.NEW_RELEASE:
-                    this.rentStrategy = new RentNewRelease();
+                    rentStrategy = new RentNewRelease();
                     break;
                 case Movie.Type.CHILDREN:
-                    this.rentStrategy = new RentChildren();
+                    rentStrategy = new RentChildren();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException($"Not found rent strategy for movie with type \"{movieType}\"");
             }
         }
 
-        internal int RentPoints()
-        {
-            return this.rentStrategy.PointsForRent(daysRental);
-        }
+        public int RentPoints() => rentStrategy.PointsForRent(DaysRental);
 
-        public double RentAmount() => rentStrategy.CalculateRentAmount(daysRental);
+        public double RentAmount() => rentStrategy.CalculateRentAmount(DaysRental);
     }
 }
