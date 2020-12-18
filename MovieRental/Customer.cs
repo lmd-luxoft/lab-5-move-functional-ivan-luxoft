@@ -29,10 +29,9 @@ namespace MovieRental
             {
                 double thisAmount = item.RentAmount();
                 frequentRenterPoints += item.RentPoints();
+                totalAmount += thisAmount;
 
                 report.Append($"\t{item.Movie}\t{thisAmount}\n");
-
-                totalAmount += thisAmount;
             }
             report.Append($"Сумма задолженности составляет {totalAmount}\nВы заработали {frequentRenterPoints} очков за активность");
             return report.ToString();
