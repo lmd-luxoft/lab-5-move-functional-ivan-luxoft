@@ -1,28 +1,26 @@
-﻿// NUnit 3 tests
-// See documentation : https://github.com/nunit/docs/wiki/NUnit-Documentation
-using System;
+﻿using MovieRental.Movies;
 
 namespace MovieRental
 {
     internal class Rental
     {
-        private Movie movie;
-        private int daysRental;
+        public MovieBase Movie { get; }
+        public int DaysRental { get; }
 
-        public Rental(Movie movie, int daysRental)
+        public Rental(MovieBase movie, int daysRental)
         {
-            this.movie = movie;
-            this.daysRental = daysRental;
+            Movie = movie;
+            DaysRental = daysRental;
         }
 
-        internal Movie getMovie()
-        {
-           return movie;
-        }
-
-        internal int getDaysRented()
-        {
-            return daysRental;
-        }
+        /// <summary>
+        /// Рассчет очков лояльности за аренду фильма
+        /// </summary>
+        public int RentPoints => Movie.PointsForRent(DaysRental);
+        
+        /// <summary>
+        /// Стоимость аренды фильма
+        /// </summary>
+        public double RentAmount => Movie.CalculateRentAmount(DaysRental);
     }
 }

@@ -41,7 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer.cs" />
-    <Compile Include="Movie.cs" />
+    <Compile Include="Movies\MovieBase.cs" />
+    <Compile Include="Movies\MovieRegular.cs" />
+    <Compile Include="Movies\MovieNewRelease.cs" />
+    <Compile Include="Movies\MovieForKids.cs" />
+    <Compile Include="RentSettings.cs" />
     <Compile Include="Rental.cs" />
     <Compile Include="TestClass.cs" />
   </ItemGroup>
