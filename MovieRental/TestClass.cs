@@ -38,6 +38,76 @@ namespace MovieRental
             Assert.AreEqual("Bug", customer.Name);
         }
         [Test]
+        public void MovieChildrenShouldBeCorrectRentalCost()
+        {
+            MovieBase movie = new MovieChildren("Angry Birds");
+            Rental rental = new Rental(movie, 10);
+            var expectedCost = 120;
+
+            var actualCost = rental.RentAmount;
+
+            Assert.AreEqual(expectedCost, actualCost);
+        }
+        [Test]
+        public void MovieRegularShouldBeCorrectRentalCost()
+        {
+            MovieBase movie = new MovieRegular("Hatico");
+            Rental rental = new Rental(movie, 10);
+            var expectedCost = 122;
+
+            var actualCost = rental.RentAmount;
+
+            Assert.AreEqual(expectedCost, actualCost);
+        }
+        [Test]
+        public void MovieNewReleaseShouldBeCorrectRentalCost()
+        {
+            MovieBase movie = new MovieNewRelease("StarWar");
+            Rental rental = new Rental(movie, 10);
+            var expectedCost = 30;
+
+            var actualCost = rental.RentAmount;
+
+            Assert.AreEqual(expectedCost, actualCost);
+        }
+        [Test]
+        [TestCase(1, 1)]
+        [TestCase(2, 1)]
+        public void MovieChildrenShouldBeCorrectPoints(int rentDays, int expectedPoints)
+        {
+            MovieBase movie = new MovieChildren("Angry Birds");
+            Rental rental = new Rental(movie, rentDays);
+
+            var actualPoints = rental.RentPoints;
+
+            Assert.AreEqual(expectedPoints, actualPoints);
+        }
+        [Test]
+        [TestCase(1, 1)]
+        [TestCase(2, 1)]
+        public void MovieRegularShouldBeCorrectPoints(int rentDays, int expectedPoints)
+        {
+            MovieBase movie = new MovieRegular("Hatico");
+            Rental rental = new Rental(movie, rentDays);
+
+            var actualPoints = rental.RentPoints;
+
+            Assert.AreEqual(expectedPoints, actualPoints);
+        }
+        [Test]
+        [TestCase(1, 1)]
+        [TestCase(2, 2)]
+        [TestCase(4, 2)]
+        public void MovieNewReleaseShouldBeCorrectPoints(int rentDays, int expectedPoints)
+        {
+            MovieBase movie = new MovieNewRelease("StarWar");
+            Rental rental = new Rental(movie, rentDays);
+
+            var actualPoints = rental.RentPoints;
+
+            Assert.AreEqual(expectedPoints, actualPoints);
+        }
+        [Test]
         public void CustomerCreateCorrectStatement()
         {
             Customer customer = new Customer("Bug");
