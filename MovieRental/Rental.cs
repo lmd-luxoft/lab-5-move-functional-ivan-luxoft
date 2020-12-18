@@ -13,8 +13,14 @@ namespace MovieRental
             DaysRental = daysRental;
         }
 
-        public int RentPoints() => Movie.PointsForRent(DaysRental);
-
-        public double RentAmount() => Movie.CalculateRentAmount(DaysRental);
+        /// <summary>
+        /// Рассчет очков лояльности за аренду фильма
+        /// </summary>
+        public int RentPoints => Movie.PointsForRent(DaysRental);
+        
+        /// <summary>
+        /// Стоимость аренды фильма
+        /// </summary>
+        public double RentAmount => Movie.CalculateRentAmount(DaysRental);
     }
 }

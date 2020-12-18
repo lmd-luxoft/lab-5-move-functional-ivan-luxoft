@@ -27,8 +27,8 @@ namespace MovieRental
             int frequentRenterPoints = 0;
             foreach (var item in rentals)
             {
-                double thisAmount = item.RentAmount();
-                frequentRenterPoints += item.RentPoints();
+                double thisAmount = item.RentAmount;
+                frequentRenterPoints += item.RentPoints;
                 totalAmount += thisAmount;
 
                 report.Append($"\t{item.Movie}\t{thisAmount}\n");
